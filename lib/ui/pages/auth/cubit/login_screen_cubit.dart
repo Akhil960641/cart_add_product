@@ -36,7 +36,7 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
       try {
         loader(context: context);
         final FirebaseAuth auth = FirebaseAuth.instance;
-        final userCredential = await auth.createUserWithEmailAndPassword(
+ await auth.createUserWithEmailAndPassword(
           email: emailCtr.text.trim(),
           password: passwordCtr.text.trim(),
         )
@@ -51,10 +51,10 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
         } else {
           snackBar(context, message: e.code);
         }
-        return null;
       } catch (e) {
+        hideLoader(context);
+
         debugPrint(e.toString());
-        return null;
       }
     } else {
       snackBar(context, message: "Invalid username or password");
@@ -67,7 +67,7 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
         loader(context: context);
 
         final FirebaseAuth auth = FirebaseAuth.instance;
-        final userCredential = await auth
+         await auth
             .signInWithEmailAndPassword(
               email: emailCtr.text.trim(),
               password: passwordCtr.text.trim(),
@@ -80,7 +80,6 @@ class LoginScreenCubit extends Cubit<LoginScreenState> {
         hideLoader(context);
 
         snackBar(context, message: e.toString());
-        return null;
       }
     } else {
       snackBar(context, message: "Invalid username or password");

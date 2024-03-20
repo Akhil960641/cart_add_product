@@ -18,11 +18,16 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
   BuildContext context;
 
   productGet() async {
-    final response = await http.get(Uri.parse(baseUrl + productListUrl));
-    debugPrint(response.body);
-    final res = jsonDecode(response.body);
-    // final data = ProductModel.fromJson(res);
-    final List<ProductModel> data =List<ProductModel>.from(res.map((x) => ProductModel.fromJson(x)));
-    emit(ViewAllProduct(product: data));
+    try {
+      final response = await http.get(Uri.parse(baseUrl + productListUrl));
+      debugPrint(response.body);
+      final res = jsonDecode(response.body);
+      // final data = ProductModel.fromJson(res);
+      final List<ProductModel> data =
+          List<ProductModel>.from(res.map((x) => ProductModel.fromJson(x)));
+      emit(ViewAllProduct(product: data));
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:norq_machine_test/data/models/product_model.dart';
 import 'package:norq_machine_test/ui/components/app_bar_custom.dart';
+import 'package:norq_machine_test/ui/pages/auth/login_page.dart';
 import 'package:norq_machine_test/ui/pages/cart_page/cart_page.dart';
 import 'package:norq_machine_test/ui/pages/home_screen/components/product_add_container.dart';
 import 'package:norq_machine_test/ui/pages/home_screen/cubit/home_screen_cubit.dart';
@@ -155,9 +154,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () { FirebaseAuth.instance.signOut();
-
-        },
+        onPressed: () => FirebaseAuth.instance.signOut().then((value) => Screen.openAsNewPage(context, LoginScreen())),
         child: Icon(Icons.logout),
       ),
     );
