@@ -74,7 +74,7 @@ class CartPage extends StatelessWidget {
                                         GestureDetector(
                                           onTap: () {
                                             cubit
-                                                .deleteItem(int.parse(data.id));
+                                                .deleteItem(index);
                                           },
                                           child: const Icon(Icons.delete,
                                               color: Colors.red, size: 20),

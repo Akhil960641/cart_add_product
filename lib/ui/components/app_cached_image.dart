@@ -26,9 +26,10 @@ class CachedImage extends StatelessWidget {
       child: Container(
         color: Colors.grey.withOpacity(0.25),
         child: CachedNetworkImage(
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           height: height,
           width: width,
+
           imageUrl: "${imageUrl}",
           // placeholder: (context, url) =>
           //     const Center(child: CupertinoActivityIndicator()),

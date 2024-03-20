@@ -44,6 +44,8 @@ dependencies:
   connectivity_plus: ^5.0.2
   hive_generator: ^2.0.1
   build_runner: ^2.4.8
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
 
 dev_dependencies:
   flutter_test:

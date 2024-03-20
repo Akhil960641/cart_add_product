@@ -67,7 +67,14 @@ class AppTextField extends StatelessWidget {
             : 0.hBox,
         isBorderNeeded ? 8.hBox : 4.hBox,
         Container(
-          decoration: isBorderNeeded ? BoxDecoration(boxShadow: [BoxShadow(blurRadius: 12, color: Colors.black12.withOpacity(shadowOpacity))], borderRadius: BorderRadius.circular(8)) : null,
+          height: 50,
+          decoration: isBorderNeeded
+              ? BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      blurRadius: 12,
+                      color: Colors.black12.withOpacity(shadowOpacity))
+                ], borderRadius: BorderRadius.circular(8))
+              : null,
           child: onTap != null
               ? !isAddField
                   ? InkWell(
@@ -75,7 +82,8 @@ class AppTextField extends StatelessWidget {
                         hideKeyboard;
                         onTap!();
                       },
-                      child: IgnorePointer(ignoring: true, child: _buildTextFormField()))
+                      child: IgnorePointer(
+                          ignoring: true, child: _buildTextFormField()))
                   : _buildTextFormField()
               : onTap != null
                   ? IgnorePointer(ignoring: true, child: _buildTextFormField())
@@ -96,7 +104,8 @@ class AppTextField extends StatelessWidget {
         style: const TextStyle(fontSize: 14),
         maxLines: isMultiline ? 5 : 1,
         inputFormatters: [LengthLimitingTextInputFormatter(maxLength)],
-        validator: (value) => validator != null ? validator!(value ?? '') : null,
+        validator: (value) =>
+            validator != null ? validator!(value ?? '') : null,
         // maxLines: maxLines,
         decoration: InputDecoration(
             errorStyle: const TextStyle(fontSize: 11, height: 1),
@@ -107,24 +116,23 @@ class AppTextField extends StatelessWidget {
               fontFamily: inter400,
             ),
             prefixIcon: prefixIcon,
-            suffixIcon: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: suffixIcon ??
-                  (onTap != null
-                      ? isAddField
-                          ? GestureDetector(
-                              onTap: () {
-                                hideKeyboard;
-                                onTap!();
-                              },
-                              child: isAddOrMinusIcon)
-                          : const AppSvg(assetName: "arrow-down")
-                      : null),
-            ),
+            suffixIcon: suffixIcon ??
+                (onTap != null
+                    ? isAddField
+                        ? GestureDetector(
+                            onTap: () {
+                              hideKeyboard;
+                              onTap!();
+                            },
+                            child: isAddOrMinusIcon)
+                        : const AppSvg(assetName: "arrow-down")
+                    : null),
             fillColor: Colors.white,
             filled: true,
             helperText: helperText?.upperFirst,
-            contentPadding: isBorderNeeded ? const EdgeInsets.symmetric(horizontal: 16, vertical: 10) : const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            contentPadding: isBorderNeeded
+                ? const EdgeInsets.symmetric(horizontal: 16, vertical: 10)
+                : const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
             border: _border(),
             enabledBorder: isBorderNeeded ? _border() : _underLine(),
             focusedBorder: isBorderNeeded ? _border() : _underLine(),
@@ -137,8 +145,11 @@ class AppTextField extends StatelessWidget {
   InputBorder _border({Color borderClr = Colors.grey}) {
     //300
     return isOutline
-        ? OutlineInputBorder(borderSide: BorderSide(color: borderClr), borderRadius: BorderRadius.circular(8))
-        : const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)); //600
+        ? OutlineInputBorder(
+            borderSide: BorderSide(color: borderClr),
+            borderRadius: BorderRadius.circular(8))
+        : const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey)); //600
   }
 
   UnderlineInputBorder _underLine({Color borderClr = Colors.black26}) {
